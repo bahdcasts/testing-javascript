@@ -3,16 +3,28 @@ const { findUserByEmail, findUserById } = require('../async')
 
 describe('The async tests', () => {
   describe('The findUserById function', () => {
-    it.only('should return found user data by id', () => {
+    it('should return found user data by id', () => {
       return findUserById(1).then(result => {
         assert.equal(result.user.name, 'bahdcoder')
       })
+    })
+    it('should throw an error if user was not found', () => {
+      return findUserById(90393).catch(error => {
+        assert.equal(error.message, 'User with id: 90393 was not found.')
+      })
+    })
+    it('should return user found by id', async () => {
+      const result = await findUserById(1)
+      assert.equal(result.user.name, 'bahdcoder')
     })
   })
 
   describe('The findUserByEmail', function () {
     it('should find user by email', function () {
-      return findUserByEmail('bahdcoder@gmail.com')
+      return findUserByEmail('bahdcoder@gmail.com').then(result => {
+        assert.equal(result.user.id, 1)
+        assert.equal(result.user.email, 'bahdcoder@gmail.com')
+      })
     })
   })
 })
