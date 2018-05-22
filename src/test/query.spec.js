@@ -15,8 +15,8 @@ describe('The query package', function () {
       assert.deepEqual(actual, expectation)
     })
 
-    it('Should return an object: { number: 3 } when ?number=3 is passed into it', function () {
-      assert.deepEqual(parse('?number=3'), {
+    it('Should return an object: { number: 3 } when number=3 is passed into it', function () {
+      assert.deepEqual(parse('number=3'), {
         number: 3
       })
     })
@@ -32,6 +32,16 @@ describe('The query package', function () {
       const actual = stringify(queryObject)
       const expectation = 'by=kati-frantz&sort=popular'
       assert.equal(actual, expectation)
+    })
+
+    it('eliminates all undefined and null values', () => {
+      const queryObject = {
+        by: 'kati-frantz',
+        popular: undefined,
+        unanswered: null
+      }
+
+      assert.equal(stringify(queryObject), 'by=kati-frantz')
     })
   })
 })
