@@ -13,7 +13,7 @@ const findUserById = (id) => {
         message: 'User found successfully.',
         user
       })
-    }, 500)
+    }, 10)
   })
 }
 
@@ -30,7 +30,7 @@ const findUserByEmail = (email) => {
         message: 'User found successfully.',
         user
       })
-    }, 500)
+    }, 10)
   })
 }
 

@@ -32,16 +32,10 @@ describe('The async tests', () => {
         assert.equal(result.user.email, 'bahdcoder@gmail.com')
       })
     })
-    it('should throw error if user was not found by email', async () => {
-      try {
-        await findUserByEmail('bahd@me.com')
-        assert.fail('EXPECTED_ERROR')
-      } catch (error) {
-        if (error.message === 'EXPECTED_ERROR') {
-          throw error
-        }
-        assert.equal(error.message, 'User with email: bahd@me.com was not found.')
-      }
+    it('should throw an error if user was not found by email', () => {
+      return findUserByEmail('bahdcoder@notfound.com').catch(error => {
+        assert.equal(error.message, 'User with email: bahdcoder@notfound.com was not found.')
+      })
     })
   })
 })
