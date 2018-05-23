@@ -1,4 +1,3 @@
-const assert = require('assert')
 const { parse, stringify } = require('../query')
 
 describe('The query package', function () {
@@ -12,12 +11,12 @@ describe('The query package', function () {
         category: 'nodejs'
       }
 
-      assert.deepEqual(actual, expectation)
+      expect(actual).toEqual(expectation)
     })
 
     it('Should return an object: { number: 3 } when number=3 is passed into it', function () {
-      assert.deepEqual(parse('number=3'), {
-        number: 3
+      expect(parse('number=3')).toEqual({
+        number: "3"
       })
     })
   })
@@ -31,7 +30,7 @@ describe('The query package', function () {
 
       const actual = stringify(queryObject)
       const expectation = 'by=kati-frantz&sort=popular'
-      assert.equal(actual, expectation)
+      expect(actual).toBe(expectation)
     })
 
     it('eliminates all undefined and null values', () => {
@@ -41,7 +40,7 @@ describe('The query package', function () {
         unanswered: null
       }
 
-      assert.equal(stringify(queryObject), 'by=kati-frantz')
+      expect(stringify(queryObject)).toBe('by=kati-frantz')
     })
   })
 })

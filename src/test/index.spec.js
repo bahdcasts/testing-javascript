@@ -6,12 +6,12 @@ describe('The ADD function tests', function () {
     const actual = add(5, 6)
     const expectation = 11
 
-    assert.equal(actual, expectation)
+    expect(actual).toBe(expectation)
   })
 
   it('Should throw an error if arguments are not passed in', function () {
-    assert.throws(() => {
+    expect(() => {
       add()
-    })
+    }).toThrow()
   })
 })
